@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import usabilla from 'usabilla-react-native';
 import {
   SafeAreaView,
@@ -16,35 +16,37 @@ import {
   Button,
 } from 'react-native';
 
-const App = () => {
-
-  useEffect(() => {
+class App extends React.Component {
+  constructor() {
+    super();
     usabilla.initialize("47b06c69-d8f2-433d-9e70-dcd4914b230f");
-  }, []);
+  }
 
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Button
-            title="Send event"
-            onPress={() => {
-              usabilla.sendEvent('show');
-            }}
-          />
-          <Button
-            title="Reset campaign"
-            onPress={() => {
-              usabilla.resetCampaignData();
-            }}
-          />
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+  render() {
+    return (
+      <>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={styles.scrollView}>
+            <Button
+              title="Send event"
+              onPress={() => {
+                usabilla.sendEvent('show');
+              }}
+            />
+            <Button
+              title="Reset campaign"
+              onPress={() => {
+                usabilla.resetCampaignData();
+              }}
+            />
+          </ScrollView>
+        </SafeAreaView>
+      </>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
